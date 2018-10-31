@@ -1,0 +1,33 @@
+@import '../../view_styles/variables.sass'
+header
+	display: flex
+	width: 100%
+	justify-content: space-between
+	align-items: center
+	height: $menu-height
+	padding: 0 0 0 20px
+	box-shadow: 0 0 2px 2px rgba(0,0,0,0.1)
+	.logo
+		height: $menu-height
+		width: $menu-height
+	button
+		border-radius: 0
+		background-color: #fff
+		color: $text-color
+		width: $menu-height
+		&:hover
+			cursor: pointer
+			background-color: $tertiary-color
+	a
+		display: flex
+
+
+@media all and (max-width: 360px)
+	header
+		height: $menu-height-small
+
+		.logo
+			height: $menu-height-small
+			width: $menu-height-small
+		button
+			width: $menu-height-small

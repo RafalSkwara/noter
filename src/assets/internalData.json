@@ -1,0 +1,18 @@
+{
+	"notes": [
+	],
+	"categories": [
+		{
+			"id": 0,
+			"name": "Simple note",
+			"color": "#EEEEEE",
+			"type": "plain"
+		},
+		{
+			"id": 1,
+			"name": "Shopping List",
+			"color": "#AAAAAA",
+			"type": "list"
+		}
+	]
+}

@@ -1,0 +1,31 @@
+@import '../../view_styles/variables.sass'
+.category-setter
+	min-width: 160px
+	width: 160px
+	height: 100%
+	position: relative
+	background-color: $tertiary-color
+	display: flex
+	align-items: center
+	justify-content: center
+	z-index: 2
+	&:hover
+		cursor: pointer
+.category__list
+	position: absolute
+	top: 130px
+	right: 10px
+	width: 160px
+	background-color: red
+	box-shadow: 0 0 13px 3px rgba(0,0,0,0.3)
+.category__item
+	border-bottom: 1px solid rgba(55,55,55,0.2)
+	background-color: rgba(255,255,255,.3)
+	padding: 10px
+	&:hover
+		background-color: #fff
+		cursor: pointer
+
+@media all and (max-width: 360px)
+	.category__list
+		top: 100px

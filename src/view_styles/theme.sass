@@ -1,0 +1,213 @@
+@import "variables"
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext')
+@import url('https://fonts.googleapis.com/css?family=Notable')
+html, .root
+	font-size: 16px
+	margin: 0
+	padding: 0
+
+body
+	margin: 0
+	padding: 0
+	height: 100%
+	max-width: 100%
+
+*, button
+	font-family: 'Lato', Helvetica, Arial, Helvetica, sans-serif
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+button
+	display: flex
+	align-items: center
+	justify-content: center
+	border: none
+	outline: none
+	flex-shrink: 0
+	height: $menu-height
+	&:focus,
+	&:active
+		outline: none
+		border: none
+
+.spacer-small
+	height: 10vh
+	width: 100%
+
+
+
+body
+	margin: 0 auto
+	min-width: 100vw
+	background-color: $white
+
+.page-wrapper
+	width: 100vw
+	max-width: 100%
+	min-height: 100vh
+	background-color: $main-color
+
+
+
+section
+	align-items: center
+
+a
+	text-decoration: none
+	color: inherit
+	&:hover
+		text-decoration: none
+.container-fluid
+	overflow-x: hidden
+.flex-center
+	display: flex
+	align-items: center
+	justify-content: center
+
+.flex-column-center
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+
+
+.button, .btn
+	outline: none
+	border: none
+	display: block
+	// padding: 12px 24px
+	color: #fff
+	font-size: 20px
+	border-radius: 10px
+	border: 2px solid #fff
+	transition: all .12s ease-in-out
+	&:hover, &:active
+		cursor: pointer
+
+	a
+		text-decoration: none
+body #root .main-container
+	background:
+		size: cover
+		repeat: no-repeat
+		position: center
+
+// - - - Media queries - - -
+
+@media all and (max-width: 640px)	
+	.spacer-small
+		height: 5vh
+	.spacer-disappear
+		display: none
+@media all and (max-width: 360px)	
+	button
+		height: $menu-height-small
+
+
+
+
+
+// animations and transitions
+.fade-appear 
+	transform: scale(.9)
+ 	opacity: 0.01
+.fade-appear.fade-appear-active
+	transform: scale(1)
+	opacity: 1
+	transition: all 500ms ease-out
+
+.fade-enter
+	opacity: 0
+.fade-enter.fade-enter-active
+	opacity: 1
+	transition: all 1s linear
+
+.fade-exit 
+  opacity: 1
+.fade-exit-active.fade-exit 
+  opacity: 0
+  transition: all 500ms ease-out
+.fade-exit-done
+	opacity: 0
+
+.switch-wrapper > div 
+  position: absolute
+
+.deshrink-appear 
+	transform: scale(.1)
+ 	opacity: 0
+
+.deshrink-appear.deshrink-appear-active
+	transform: scale(1)
+	opacity: 0.9
+	transition: all 300ms ease-out
+
+.deshrink-enter
+	opacity: 0
+
+.deshrink-enter.deshrink-enter-active
+	opacity: 1
+	transition: all 300ms linear
+.deshrink-enter-done
+	opacity: 1
+.deshrink-exit 
+	opacity: 1
+.deshrink-exit-active.deshrink-exit 
+	opacity: 0
+	transition: all 300ms ease-out
+.deshrink-exit-done
+	opacity: 0
+
+.photo-show
+	&-appear,
+	&-exit
+		transform-origin: center
+
+
+.photo-show-appear 
+	transform: scale(.1)
+ 	opacity: 0
+
+.photo-show-appear.photo-show-appear-active
+	transform: scale(1)
+	opacity: 1
+	// transition: all 300ms ease-out
+
+.photo-show-enter
+	opacity: 0
+
+.photo-show-enter.photo-show-enter-active
+	opacity: 0
+	transition: all 300ms linear
+.photo-show-enter-done
+	opacity: 1
+.photo-show-exit
+	transition: all 300ms linear 
+	opacity: 1
+.photo-show-exit-active.photo-show-exit 
+	opacity: 0
+	transition: all 300ms ease-out
+.photo-show-exit-done
+	opacity: 0
+.spinner-wrapper
+	width: 100%
+	height: 100%
+	display: flex
+	align-items: center
+	justify-content: center
+	height: 400px
+	min-height: 200px
+.loading-spinner
+	height: 80px
+	width: 80px
+	border-top: 3px solid #ffffff
+	border-radius: 50%
+	animation: spin 500ms linear infinite
+
+
+@keyframes spin
+	0%
+		transform: rotate(0deg)
+	100%
+		transform: rotate(360deg)
