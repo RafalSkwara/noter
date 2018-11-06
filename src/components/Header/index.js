@@ -32,7 +32,7 @@ class Header extends React.Component {
 						? <button>
 							<IconMenu size={55}/>
 						</button>
-						: <NavLink to="/"> 
+						: <NavLink to={this.props.backLink}> 
 							<button>
 								<IconBack size={55} /> 
 							</button>

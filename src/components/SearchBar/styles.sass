@@ -3,7 +3,14 @@
 	padding: 0 10px
 	display: flex
 	width: 100%
+	flex-wrap: wrap
 	max-width: 600px
+	position: relative
+	.input-wrapper
+		display: flex
+		min-width: 100px
+		max-width: 520px
+		width: 100%
 	input[type="text"]
 		height: $menu-height*0.75
 		flex: 1 1
@@ -12,7 +19,15 @@
 		text-indent: 15px
 		font-size: 24px
 		min-width: 50px
-	div
+		border: 2px solid white
+		outline: none
+		&:focus
+			border: 2px solid $tertiary-color
+			border-right: none
+		&:focus + div
+			border-top: 2px solid $tertiary-color
+			border-bottom: 2px solid $tertiary-color
+	.icon-wrapper
 		width: $menu-height*0.75
 		height: $menu-height*0.75
 		background: $tertiary-color
@@ -20,3 +35,50 @@
 		cursor: pointer
 		&:hover
 			background-color: $secondary-color
+	&__clear
+		width: 50px
+		background-color: #fff
+		color: #888
+		&:hover
+			color: #444
+			cursor: pointer
+	.results
+		position: relative
+		z-index: 5
+		border-radius: 0
+		top: 2px
+		max-height: 150px
+		overflow-y: auto
+		left: 0
+		width: 100%
+		background-color: #fff
+		height: auto
+		&:hover
+			background-color: #fff
+			cursor: default
+		&__item
+			height: auto
+			background-color: transparent
+			padding: 6px
+			width: 100%
+			border-radius: 0
+@media all and (max-width: 620px)
+	.search-bar
+		padding: 0 10px
+		width: 100%
+		max-width: 400px
+		margin: 0 auto
+		.input-wrapper
+			flex: 1 1
+			display: flex
+			min-width: 100px
+			max-width: 450px
+@media all and (max-width: 420px)
+	.search-bar
+		padding: 0 10px
+		width: 100%
+		max-width: 300px
+		margin: 0 auto
+		.input-wrapper
+			min-width: 100px
+			max-width: 250px

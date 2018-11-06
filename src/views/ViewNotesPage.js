@@ -7,6 +7,7 @@ import { setNotes } from '../actions/actions';
 import "../view_styles/ViewNotesPage.sass";
 import Header from '../components/Header';
 import Note from '../components/Note';
+import BigButton from '../components/BigButton';
 
 import internalData from '../assets/internalData.json'
 
@@ -43,7 +44,7 @@ class ViewNotesPage extends React.Component {
 	render() {
 		return (
 			<div className="page-wrapper">
-				<Header homepage={false}/>
+				<Header homepage={false} backLink="/"/>
 				<div className="note-wrapper" >
 					{this.props.notes.length > 0 
 						? this.props.notes.map((el, i) => (
@@ -54,7 +55,10 @@ class ViewNotesPage extends React.Component {
 								type={el.type}
 								title={el.title}/>
 						))
-						: "There are no notes yet"
+						: <div className="no-notes flex-column-center">
+							<p>There are no notes yet</p>
+							<BigButton link="/add-note">Add Note</BigButton>
+						</div>
 					}
 				</div>
 			</div>

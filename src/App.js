@@ -14,10 +14,16 @@ import {
 
 import HomePage from './views/HomePage'
 import ViewNotesPage from './views/ViewNotesPage'
+import NotePage from './views/NotePage'
 import AddNotePage from './views/AddNotePage'
 import "./view_styles/theme.sass";
 import { map } from "react-icons-kit/ionicons";
 import internalData from "./assets/internalData.json";
+
+const mapStateToProps = state => ({
+	notes: state.mainReducer.notes,
+	category: state.mainReducer.activeCategory
+});
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
@@ -31,20 +37,25 @@ class App extends React.Component {
 	;
 	componentWillMount() {
 		if(localStorage.hasOwnProperty("data")) {
-				this.props.setNotes(JSON.parse(localStorage.data).notes)
-				this.props.setCategories(JSON.parse(localStorage.data).categories)
+			this.props.setNotes(JSON.parse(localStorage.data).notes)
+			let catTemp = JSON.parse(localStorage.data).categories
+				if (catTemp !== undefined) {				
+					this.props.setCategories(JSON.parse(localStorage.data).categories)
+				} else {
+					this.props.setCategories(internalData.categories)
+				}
 		} else {
 			localStorage.setItem("data", JSON.stringify(internalData));
+			this.props.setCategories(JSON.parse(localStorage.data).categories)
 		}
-	}
-	componentDidMount() {
 		this.props.activateCategory(0)
 	}
+
 	
     render() {
 		const timeout = 1000;
 		return (
-			<Router basename={"/"} > 
+			<Router basename={"/noter"} > 
 			{/* change the string in basename to "/" for development */}
 				<AnimatedSwitch
 					atEnter={{ opacity: 0 }}
@@ -53,6 +64,7 @@ class App extends React.Component {
 					className="switch-wrapper"
 					>
 						<Route path={"/add-note"} component={AddNotePage}/>
+						<Route path={"/notes/:id"} component={NotePage}/>
 						<Route path={"/notes"} component={ViewNotesPage}/>
 						<Route path={"/"} exact component={HomePage}/>
 						<Redirect from={"*"} to={"/"} />
@@ -63,4 +75,4 @@ class App extends React.Component {
 
 }
 
-export default withRouter(hot(module)(connect(null, mapDispatchToProps)(App)))
+export default withRouter(hot(module)(connect(mapStateToProps, mapDispatchToProps)(App)))

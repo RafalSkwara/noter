@@ -1,12 +1,13 @@
 @import '../../view_styles/variables.sass'
 .note
 	display: flex
-	width: 100%
+	width: 96%
 	min-height: 100px
 	align-items: center
-	
-	border: 1px solid #eee
+	border-radius: 6px
+	box-shadow: 0 0 13px 2px rgba(0,0,0,0.2)
 	flex-direction: column
+	margin-bottom: 10px
 	&__header,
 	&__text
 		width: 100%
@@ -17,4 +18,18 @@
 		height: 50%
 	&__header
 		background-color: rgba(255,255,255,0.2)
+		font-size: 1.4rem
+		font-weight: normal
+		padding: 0 0 0 10px
+	&__text
+		font-size: 1.3rem
+		font-weight: 500
+	&__delete
+		color: #666
+		height: 50px
+		width: 50px
+		border-radius: 5px
+		&:hover
+			color: #333
+			background-color: #fff
 		

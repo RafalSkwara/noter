@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { IconMenu } from '../Icons'
 import { setNotes, removeNote } from '../../actions/actions';
 import "./styles.sass";
-
+import { IconDelete } from '../../components/Icons'
 const mapStateToProps = state => ({
 	notes: state.mainReducer.notes
 });
@@ -23,8 +23,10 @@ class Note extends React.Component {
 		
 	}
 
-	removeItem(id) {
-		console.log(localStorage.data)
+	removeItem(ev, id) {
+		let e = ev;
+		e.preventDefault();
+		e.stopPropagation();
 		this.props.removeNote(id)		
 		let data = JSON.parse(localStorage.data),
 			newData = {"notes": []};
@@ -35,25 +37,26 @@ class Note extends React.Component {
 			localStorage.clear();
 			localStorage.setItem("data", JSON.stringify(newData));
 		}	
-		console.log(localStorage.data)
 	}
 	getSnippet(str) {
 		return str.length >= 30 ? `${str.slice(0, 27)}...` : str;
 	}
 
 
-	render() {
-		console.log(this.props.noteText.slice(0, 27));
-		
+	render() {		
 		return (
-			<div className="note" onClick={()=>this.removeItem(this.props.index)}>
-				<div className="note__header">
-				<b>{this.props.title}</b>
+			<NavLink to={`/notes/${this.props.index}`}>
+
+				<div className="note" >
+					<div className="note__header">
+						{this.props.title}
+						<div className="note__delete flex-center" onClick={(e)=>this.removeItem(e, this.props.index)}><IconDelete size={28}/></div>
+					</div>
+					{/* <div className="note__text">
+						{this.getSnippet(this.props.noteText)}
+					</div> */}
 				</div>
-				<div className="note__text">
-					{this.getSnippet(this.props.noteText)}
-				</div>
-			</div>
+			</NavLink>
 		)
 	}
 }

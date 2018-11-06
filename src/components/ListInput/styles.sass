@@ -1,0 +1,73 @@
+@import '../../view_styles/variables.sass'
+
+.list__item-wrapper
+	box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.3)
+	display: flex
+	height: $menu-height/2
+	margin-bottom: 10px
+	input[type="text"]
+		height: $menu-height/2
+		flex: 1 1
+		text-indent: 15px
+		font-size: 24px
+		min-width: 50px
+		border: 2px solid white
+		border-right: none
+		border-radius: 0
+		outline: none
+		transition: all .14s ease-in-out
+		box-shadow: none
+		& ~ div
+			border: 2px solid white
+			border-left: none
+			transition: all .14s ease-in-out
+			background-color: #fff
+			color: #888
+			&:hover
+				color: #444444
+				cursor: pointer
+		& + div
+			border-right: none
+
+		&:focus
+			border-radius: 0
+			border: 2px solid $tertiary-color
+			border-right: none
+		&:focus ~ div
+			border-top: 2px solid $tertiary-color
+			border-bottom: 2px solid $tertiary-color
+			border-right: 2px solid $tertiary-color
+		&:focus + div
+			border-right: none
+	.delete-list-item
+		height: $menu-height/2
+		width: $menu-height/2
+	.icon-wrapper
+		width: $menu-height*0.75
+		height: $menu-height*0.75
+		background: $tertiary-color
+		border-radius: 0 12px 12px 0
+		cursor: pointer
+		&:hover
+			background-color: $secondary-color
+// &__clear
+// 	width: 50px
+// 	background-color: #fff
+// 	color: #888
+// 	&:hover
+// 		color: #444
+// 		cursor: pointer
+
+@media all and (max-width: 620px)
+	.list__item--wrapper
+		.input-wrapper
+			flex: 1 1
+			display: flex
+			min-width: 100px
+			max-width: 450px
+
+@media all and (max-width: 420px)
+	.list__item--wrapper
+		.input-wrapper
+			min-width: 100px
+			max-width: 250px

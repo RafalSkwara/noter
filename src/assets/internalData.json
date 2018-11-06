@@ -5,13 +5,15 @@
 		{
 			"id": 0,
 			"name": "Simple note",
-			"color": "#EEEEEE",
+			"bg-color": "#333333",
+			"text-color": "#FFFFFF",
 			"type": "plain"
 		},
 		{
 			"id": 1,
 			"name": "Shopping List",
-			"color": "#AAAAAA",
+			"bg-color": "#AAAAAA",
+			"text-color": "#FFFFFF",
 			"type": "list"
 		}
 	]

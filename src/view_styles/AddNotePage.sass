@@ -2,33 +2,77 @@
 
 .note-wrapper
 	width: 100%
+	max-width: 1200px
+	margin: 0 auto
+	padding: 10px
 	display: flex
 	flex-direction: column
 	align-items: center
 	justify-content: flex-start
+	padding-top: 10px
 	.top-row,
-	.bottom-row
-		padding: 10px
+	.bottom-row,
+	.button-row
 		width: 100%
 		display: flex
-		align-items: center
+		
 		flex: 1 0
 		input, textarea 
 			width: 100%
 			border: none
 			box-shadow: 0 0 8px -2px rgba(0,0,0,0.3)
+			text-indent: 10px
+			font-size: 1rem
+			transition: all .15s ease-in
+			border: 2px solid white
+			&:focus
+				border-radius: 4px
+				border: 2px solid $tertiary-color
+				outline: none
+		p.label
+			padding-left: 10px
+			width: 120px
+			min-width: 120px
+			font-weight: 700
+			font-size: 1.1rem
+			height: 40px
+			line-height: 40px
+			&:last-of-type
+				align-self: flex-start
+			
 			
 	.top-row
 		height: $menu-height/2
+		margin-bottom: 10px
+		align-items: center
 		input
 			height: $menu-height/2
+			font-size: 1.1rem
+	.button-row
+		margin-top: 10px
+		.add-note-btn
+			width: auto
+			background-color: $tertiary-color
+			display: flex
+			height: 40px
+			width: 100%
+			justify-content: center
+			align-items: center
+			transition: all .14s ease-in-out
+			&:hover
+				background-color: #fff
+				
 	.bottom-row
-		flex-direction: column
 		min-height: 50vh
 		textarea
-			padding: 10px
-			min-width: 100%
-			max-width: 100%
-			height: calc(100vh - 230px)
-			min-height: calc(100vh - 230px)
-			max-height: calc(100vh - 230px)
+			padding: 10px 10px 10px 0
+			width: 100%
+			height: calc(100vh - 300px)
+			min-height: 160px
+			max-height: calc(100vh - 300px)
+	.list__wrapper
+		width: 100%
+		input
+			height: 40px
+			font-size: 1.1rem
+			margin-bottom: 10px

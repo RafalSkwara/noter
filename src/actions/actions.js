@@ -40,3 +40,25 @@ export function activateCategory(id) {
 		payload: id
 	};
 }
+export function addListItem() {
+	return {
+		type: "ADD_LIST_ITEM"
+	};
+}
+export function updateListItem(arr) { //array: [index, text]
+	return {
+		type: "UPDATE_LIST_ITEM",
+		payload: arr
+	};
+}
+export function deleteListItem(num) { 
+	return {
+		type: "DELETE_LIST_ITEM",
+		payload: num
+	};
+}
+export function clearList() { 
+	return {
+		type: "CLEAR_LIST"
+	};
+}

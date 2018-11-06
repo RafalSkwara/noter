@@ -1,0 +1,61 @@
+@import './variables.sass'
+
+.single-note-wrapper
+	width: 100%
+	margin: 10px auto
+	padding: 10px
+	max-width: 1400px
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: flex-start
+	background-color: rgba(255,255,255, 0.4)
+	min-height: calc(100vh - 100px)
+	a
+		display: flex
+	.note__title
+		width: 100%
+		font:
+			size: 1.8rem
+			weight: 700
+		margin: 5px 10px 15px 10px
+		padding: 10px 20px
+		background-color: rgba(255,255,255,0.7)
+		border-radius: 10px
+	.note__operations
+		width: 100%
+		display: flex
+		justify-content: space-between
+		.note__category
+			width: 100%
+			margin-right: 20px
+			display: flex
+			text-transform: uppercase
+			justify-content: flex-start
+			padding-left: 20px
+			font:
+				size: 1.3rem
+
+		.note__icons
+			display: flex
+		.note__delete,
+		.note__edit
+			width: $menu-height/1.5
+			height: $menu-height/1.5
+			border: 1px solid #ffffff
+			border-radius: 4px
+			color: #444
+			transition: all .12s ease-in-out
+			&:hover
+				cursor: pointer
+				background-color: #fff
+				color: #111
+				transform: scale(1.03)
+				box-shadow: 0 0 15px -3px rgba(0,0,0,0.3)
+			&:active
+				transform: scale(1)
+				box-shadow: none
+
+		.note__edit
+			margin-right: 10px
+

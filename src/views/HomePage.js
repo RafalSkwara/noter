@@ -47,9 +47,9 @@ class HomePage extends React.Component {
 				<Header homepage={true} />
 				<img className="large-img" src={img}/>
 				<div className="button-wrapper" >
+					<Searchbar />
 					<BigButton link="/notes">View Notes</BigButton>
 					<BigButton link="/add-note">Add Note</BigButton>
-					<Searchbar />
 				</div>
 			</div>
 

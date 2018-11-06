@@ -11,7 +11,7 @@ import "./styles.sass";
 
 const mapStateToProps = state => ({
 	categories: state.mainReducer.categories,
-	activeCategory: state.mainReducer.activeCategory
+	activeCategory: state.mainReducer.activeCategory[0]
 });
 
 function mapDispatchToProps(dispatch) {
@@ -51,7 +51,7 @@ class CategorySetter extends React.Component {
 				style={{backgroundColor: this.props.activeCategory.color}}
 				onClick={() => this.toggleMenu()}>
 
-					{this.props.activeCategory[0].name}
+					{this.props.activeCategory.name}
 			</div>
 			{this.state.menuOpen && (
 				<div className="category__list">
