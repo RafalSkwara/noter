@@ -10,7 +10,7 @@ import { map } from "react-icons-kit/ionicons";
 
 
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes
+	notes: state.notesReducer.notes
 });
 
 function mapDispatchToProps(dispatch) {
@@ -22,12 +22,15 @@ class ListInput extends React.Component {
 	// eslint-disable-line react/prefer-stateless-function
 	constructor(props) {
 		super(props);
-
+		this.state = {
+			input: this.props.defVal ? this.props.defVal : ''
+		}
 	}
 
-	clearInput(){
+	clearInput(e, i){
+		let event = e;
 		this.setState({input: ''})
-		document.querySelector('.search-bar input').focus()
+		this.props.changeHandler(event, i)
 	}
 
 
@@ -36,10 +39,11 @@ class ListInput extends React.Component {
 		return (
 			<div className="list__item-wrapper">
 				<input className="list__item"
+					placeholder={this.props.defVal}
 					type="text"
 					onChange={(e) => this.props.changeHandler(e, this.props.index)}
 				/>
-				<div className="delete-list-item flex-center" onClick={() => this.props.deleteListItem(this.props.index)}>
+				<div className="delete-list-item flex-center" onClick={(e) => this.clearInput(e, this.props.index)}>
 					<IconClose size={32}/>
 				</div>
 				<div className="delete-list-item flex-center" onClick={() => this.props.deleteListItem(this.props.index)}>

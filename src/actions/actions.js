@@ -1,12 +1,7 @@
+// NOTES
 export function setNotes(arr) {
 	return {
 		type: "SET_NOTES",
-		payload: arr
-	};
-}
-export function setCategories(arr) {
-	return {
-		type: "SET_CATEGORIES",
 		payload: arr
 	};
 }
@@ -16,9 +11,9 @@ export function addNote(arr) {
 		payload: arr
 	};
 }
-export function addCategory(obj) {
+export function updateNote(obj) {
 	return {
-		type: "ADD_CATEGORY",
+		type: "UPDATE_NOTE",
 		payload: obj
 	};
 }
@@ -28,16 +23,13 @@ export function removeNote(id) {
 		payload: id
 	};
 }
-export function removeCategory(id) {
+
+// LISTS
+
+export function setList(arr) {
 	return {
-		type: "REMOVE_CATEGORY",
-		payload: id
-	};
-}
-export function activateCategory(id) {
-	return {
-		type: "ACTIVATE_CATEGORY",
-		payload: id
+		type: "SET_LIST",
+		payload: arr
 	};
 }
 export function addListItem() {
@@ -60,5 +52,32 @@ export function deleteListItem(num) {
 export function clearList() { 
 	return {
 		type: "CLEAR_LIST"
+	};
+}
+
+//CATEGORIES
+
+export function setCategories(arr) {
+	return {
+		type: "SET_CATEGORIES",
+		payload: arr
+	};
+}
+export function addCategory(obj) {
+	return {
+		type: "ADD_CATEGORY",
+		payload: obj
+	};
+}
+export function removeCategory(id) {
+	return {
+		type: "REMOVE_CATEGORY",
+		payload: id
+	};
+}
+export function activateCategory(id) {
+	return {
+		type: "ACTIVATE_CATEGORY",
+		payload: id
 	};
 }

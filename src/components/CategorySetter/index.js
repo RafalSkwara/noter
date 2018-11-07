@@ -30,6 +30,22 @@ class CategorySetter extends React.Component {
 
 	}
 
+	componentDidMount() {
+		document.body.addEventListener('click', this.closeMenu.bind(this));
+	}
+	componentWillUnmount() {
+		document.body.removeEventListener('click', this.closeMenu);
+	}
+	
+
+	closeMenu(e) {
+		let ev = e;
+		ev.target.classList.contains("category__item") 
+			? null
+			: this.setState({
+				menuOpen: false
+			})
+	}
 	toggleMenu() {
 		this.setState({
 			menuOpen: !this.state.menuOpen

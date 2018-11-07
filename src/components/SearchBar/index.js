@@ -9,7 +9,7 @@ import "./styles.sass";
 
 
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes
+	notes: state.notesReducer.notes
 });
 
 

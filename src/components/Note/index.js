@@ -8,7 +8,7 @@ import { setNotes, removeNote } from '../../actions/actions';
 import "./styles.sass";
 import { IconDelete } from '../../components/Icons'
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes
+	notes: state.notesReducer.notes
 });
 
 function mapDispatchToProps(dispatch) {
@@ -38,8 +38,8 @@ class Note extends React.Component {
 			localStorage.setItem("data", JSON.stringify(newData));
 		}	
 	}
-	getSnippet(str) {
-		return str.length >= 30 ? `${str.slice(0, 27)}...` : str;
+	getSnippet(str, num) {
+		return str.length >= num ? `${str.slice(0, num-3)}...` : str;
 	}
 
 
@@ -52,9 +52,11 @@ class Note extends React.Component {
 						{this.props.title}
 						<div className="note__delete flex-center" onClick={(e)=>this.removeItem(e, this.props.index)}><IconDelete size={28}/></div>
 					</div>
-					{/* <div className="note__text">
-						{this.getSnippet(this.props.noteText)}
-					</div> */}
+					<div className="note__text">
+						{Array.isArray(this.props.noteText)
+							? this.getSnippet(this.props.noteText[0], 30)
+							: this.getSnippet(this.props.noteText, 30)}
+					</div>
 				</div>
 			</NavLink>
 		)

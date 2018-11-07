@@ -53,22 +53,40 @@
 			align-items: flex-start
 	.button-row
 		margin-top: 10px
-		.add-note-btn
-			width: auto
+	.add-note-btn
+		position: absolute
+		bottom: 0
+		left: 0
+		width: auto
+		color: $tertiary-color
+		background-color: #fff
+		display: flex
+		height: 60px
+		width: 100%
+		justify-content: center
+		align-items: center
+		transition: all .14s ease-in-out
+		border: 2px solid $tertiary-color
+		&:hover,
+		&:active
+			color: #fff
 			background-color: $tertiary-color
-			display: flex
-			height: 40px
-			width: 100%
-			justify-content: center
-			align-items: center
-			transition: all .14s ease-in-out
-			&:hover
-				background-color: #fff
+			cursor: pointer
+		&:active
+			transform: scale(0.99)
+		p 
+			font:
+				size: 1.4rem
+				weight: 700
+			text-transform: uppercase
+			margin-right: 20px
+			
 				
 	.bottom-row
 		min-height: 50vh
 		textarea
-			padding: 10px 10px 10px 0
+			text-indent: 0
+			padding: 10px
 			width: 100%
 			height: calc(100vh - 300px)
 			min-height: 160px

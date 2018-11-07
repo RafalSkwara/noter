@@ -1,7 +1,7 @@
 @import '../../view_styles/variables.sass'
 .note
 	display: flex
-	width: 96%
+	width: 100%
 	min-height: 100px
 	align-items: center
 	border-radius: 6px
@@ -16,10 +16,12 @@
 		align-items: center
 		justify-content: space-between
 		height: 50%
+		transition: all .14s ease-in-out
+
 	&__header
 		background-color: rgba(255,255,255,0.2)
 		font-size: 1.4rem
-		font-weight: normal
+		font-weight: bold
 		padding: 0 0 0 10px
 	&__text
 		font-size: 1.3rem
@@ -33,3 +35,10 @@
 			color: #333
 			background-color: #fff
 		
+.note:hover
+	.note__header
+		background-color: $secondary-color
+	.note__text
+		background-color: $tertiary-color
+@media all and( max-width: 460px )
+	.note

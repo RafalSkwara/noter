@@ -7,14 +7,14 @@ import { setNotes, removeNote } from '../actions/actions';
 import "../view_styles/NotePage.sass";
 import Header from '../components/Header';
 import Note from '../components/Note';
-import { IconClose, IconDelete, IconEdit } from '../components/Icons'
+import { IconClose, IconDelete, IconEdit, IconCheck, IconCheckEmpty } from '../components/Icons'
 
 
 import internalData from '../assets/internalData.json'
 
 
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes,
+	notes: state.notesReducer.notes,
 	categories: state.mainReducer.categories
 });
 
@@ -49,6 +49,8 @@ class NotePage extends React.Component {
 	render() {
 		let id = Number(this.props.match.params.id), notes = this.props.notes;
 		let note = notes.filter(el => el.id == Number(id))[0];
+		console.log(note);
+		
 		const category = note ? this.props.categories.filter(el => el.name === note.category)[0] :null;
 		let styles = note ? {
 			backgroundColor: category["bg-color"],
@@ -59,16 +61,15 @@ class NotePage extends React.Component {
 			<div className="page-wrapper">
 				<Header homepage={false} backLink="/notes"/>
 				<div className="single-note-wrapper" >
-					<div className="note__title">
-						{note && note.title}
-					</div>
 					<div className="note__operations">
 						<p className="note__category flex-center" 
 							style={styles}>
 							{note && note.category}
 						</p>
 						<div className="note__icons">
-							<div className="note__edit flex-center"><IconEdit size={32} /></div>
+							<NavLink to={`/edit/${id}`}>
+								<div className="note__edit flex-center"><IconEdit size={32} /></div>
+							</NavLink>
 							<NavLink to="/notes" onClick={(e) => this.deleteHandler(e, id)}>
 								<div className="note__delete flex-center" >
 									<IconDelete size={32}/>
@@ -77,7 +78,23 @@ class NotePage extends React.Component {
 						</div>
 						
 					</div>
-						{note && note.text} 
+					<div className="note__title">
+						{note && note.title}
+					</div>
+					<div className="note__content">
+						{note 
+							? Array.isArray(note.text) 
+								? (<ul>
+									{note.text.map((bullet, i) => bullet.length > 0 
+										? (<li key={`bullet-${i}`}>
+											<IconCheckEmpty size={32} />
+											<p>{bullet}</p>
+											</li>)
+										: null)}
+								</ul>) 
+								: note.text 
+							: null} 
+					</div>
 					
 				</div>
 			</div>

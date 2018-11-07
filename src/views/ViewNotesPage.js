@@ -13,7 +13,7 @@ import internalData from '../assets/internalData.json'
 
 
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes
+	notes: state.notesReducer.notes
 });
 
 function mapDispatchToProps(dispatch) {
@@ -43,7 +43,7 @@ class ViewNotesPage extends React.Component {
 
 	render() {
 		return (
-			<div className="page-wrapper">
+			<div className="page-wrapper view-notes-page">
 				<Header homepage={false} backLink="/"/>
 				<div className="note-wrapper" >
 					{this.props.notes.length > 0 

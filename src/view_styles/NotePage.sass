@@ -22,10 +22,12 @@
 		padding: 10px 20px
 		background-color: rgba(255,255,255,0.7)
 		border-radius: 10px
+		letter-spacing: 1px
 	.note__operations
 		width: 100%
 		display: flex
 		justify-content: space-between
+		margin-bottom: 10px
 		.note__category
 			width: 100%
 			margin-right: 20px
@@ -35,6 +37,7 @@
 			padding-left: 20px
 			font:
 				size: 1.3rem
+			letter-spacing: 3px
 
 		.note__icons
 			display: flex
@@ -58,4 +61,33 @@
 
 		.note__edit
 			margin-right: 10px
+	.note__content
+		width: 100%
+		padding: 10px
+		background-color: rgba(255,255,255,0.8)
+		border-radius: 8px
+		flex: 1
+		font-size: 1.2rem
+		letter-spacing: 0.6px
+		ul
+			padding: 5px 10px
+			list-style-type: none
+			li
+				min-height: 50px
+				padding: 5px 10px
+				display: flex
+				align-items: center
+			
+				&:hover
+					cursor: pointer
+					background-color: rgba(0,0,0,0.2)
+				div
+					align-self: flex-start
+					margin-top: 5px	
+				p
+					flex: 1
+					margin-left: 10px
+					height: 100%
+					padding-left: 10px
+					border-left: 1px solid rgba(0,0,0,0.4)
 

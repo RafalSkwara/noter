@@ -16,12 +16,13 @@ import HomePage from './views/HomePage'
 import ViewNotesPage from './views/ViewNotesPage'
 import NotePage from './views/NotePage'
 import AddNotePage from './views/AddNotePage'
+import EditNotePage from './views/EditNotePage'
 import "./view_styles/theme.sass";
 import { map } from "react-icons-kit/ionicons";
 import internalData from "./assets/internalData.json";
 
 const mapStateToProps = state => ({
-	notes: state.mainReducer.notes,
+	notes: state.notesReducer.notes,
 	category: state.mainReducer.activeCategory
 });
 
@@ -43,6 +44,9 @@ class App extends React.Component {
 					this.props.setCategories(JSON.parse(localStorage.data).categories)
 				} else {
 					this.props.setCategories(internalData.categories)
+					let json = JSON.parse(localStorage.data)
+					json.categories = internalData.categories
+					localStorage.setItem("data", JSON.stringify(json));
 				}
 		} else {
 			localStorage.setItem("data", JSON.stringify(internalData));
@@ -64,6 +68,7 @@ class App extends React.Component {
 					className="switch-wrapper"
 					>
 						<Route path={"/add-note"} component={AddNotePage}/>
+						<Route path={"/edit/:id"} component={EditNotePage}/>
 						<Route path={"/notes/:id"} component={NotePage}/>
 						<Route path={"/notes"} component={ViewNotesPage}/>
 						<Route path={"/"} exact component={HomePage}/>
