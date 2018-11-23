@@ -38,16 +38,21 @@ class App extends React.Component {
 	;
 	componentWillMount() {
 		if(localStorage.hasOwnProperty("data")) {
-			this.props.setNotes(JSON.parse(localStorage.data).notes)
-			let catTemp = JSON.parse(localStorage.data).categories
-				if (catTemp !== undefined) {				
-					this.props.setCategories(JSON.parse(localStorage.data).categories)
-				} else {
-					this.props.setCategories(internalData.categories)
-					let json = JSON.parse(localStorage.data)
-					json.categories = internalData.categories
-					localStorage.setItem("data", JSON.stringify(json));
-				}
+			let d = JSON.parse(localStorage.data);
+			console.log(d);
+			
+			this.props.setNotes(d.notes);
+			if (d.categories !== undefined) {
+					console.log("categories in data are not undefined, d.categories: "+JSON.stringify(d.categories));
+									
+					this.props.setCategories(d.categories)
+			} else {
+				console.log("categories in data are UNdefined")
+				this.props.setCategories(internalData.categories)
+				let json = d;
+				json.categories = internalData.categories
+				localStorage.setItem("data", JSON.stringify(json));
+			}
 		} else {
 			localStorage.setItem("data", JSON.stringify(internalData));
 			this.props.setCategories(JSON.parse(localStorage.data).categories)

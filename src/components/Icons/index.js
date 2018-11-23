@@ -17,6 +17,7 @@ export const IconBack = (props) => <Icon icon={androidArrowBack} size={props.siz
 export const IconClose = (props) => <Icon icon={androidClose} size={props.size}/>
 export const IconDelete = (props) => <Icon icon={androidDelete} size={props.size}/>
 export const IconAdd = (props) => <Icon icon={androidAddCircle} size={props.size}/>
+export const IconAddBig = (props) => <Icon icon={androidAdd} size={props.size}/>
 export const IconEdit = (props) => <Icon icon={edit} size={props.size}/>
 export const IconSave = (props) => <Icon icon={checkmark} size={props.size}/>
 export const IconCheckEmpty = (props) => <Icon icon={ic_check_box_outline_blank} size={props.size}/>

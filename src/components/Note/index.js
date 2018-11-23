@@ -44,7 +44,9 @@ class Note extends React.Component {
 
 
 	render() {		
+			console.log(this.props.noteText);
 		return (
+			
 			<NavLink to={`/notes/${this.props.index}`}>
 
 				<div className="note" >
@@ -53,9 +55,11 @@ class Note extends React.Component {
 						<div className="note__delete flex-center" onClick={(e)=>this.removeItem(e, this.props.index)}><IconDelete size={28}/></div>
 					</div>
 					<div className="note__text">
-						{Array.isArray(this.props.noteText)
-							? this.getSnippet(this.props.noteText[0], 30)
-							: this.getSnippet(this.props.noteText, 30)}
+						{this.props.noteText ? //check if text exist
+							Array.isArray(this.props.noteText) // check if text is an array
+								? this.getSnippet(this.props.noteText[0], 30)
+								: this.getSnippet(this.props.noteText, 30)
+							: ""}
 					</div>
 				</div>
 			</NavLink>

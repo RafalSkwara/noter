@@ -45,19 +45,20 @@ class EditNotePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: this.props.notes[this.props.match.params.id].title,
-			text: this.props.notes[this.props.match.params.id].text,
 			id: this.props.match.params.id,
-			type: this.props.notes[this.props.match.params.id].type,
-			note: [this.props.notes[this.props.match.params.id]]
+			note: this.props.notes.filter(el => el.id == [this.props.match.params.id]),
+			title: this.props.notes.filter(el => el.id == [this.props.match.params.id])[0].title,
+			saveButton: 'Save'
 		}
 	}
 
 	
-	componentDidMount() {
+	componentWillMount() {
+		console.log(this.state.note[0].text);
+		let noteText = this.state.note[0].text;
 		let cat = this.props.categories.filter(category => category.name === this.state.note[0].category)[0]
 		this.props.activateCategory(cat.id)
-		this.props.setList(this.state.text)
+		Array.isArray(noteText) ? this.props.setList(noteText) : null;
 	}
 	
 
@@ -87,16 +88,16 @@ class EditNotePage extends React.Component {
 			category: this.props.categoryName
 		}
 		// this.setState({ text: "", title: "" })
-		let stored = JSON.parse(localStorage.data).notes;
-		stored = stored.map( el => {
-			if (el.id === newNote.id) {
-				return newNote
-			} else { return el}
-		})
-		this.props.updateNote(newNote)
-		localStorage.setItem("data", JSON.stringify({ "notes": stored }))
+		let d = JSON.parse(localStorage.data), storedNotes = d.notes;
+		storedNotes = storedNotes.map( el => el.id === newNote.id ? newNote : el);
+		d.notes = storedNotes;
+		this.props.updateNote(newNote);
+		localStorage.setItem("data", JSON.stringify(d));
 		//after adding the note clear the data in all of inputs
-
+		this.setState({saveButton: 'note saved!'});
+		setTimeout(() => {
+			this.setState({saveButton: 'Save'});
+		}, 2000);
 	}
 
 	handleEnter(e) {
@@ -118,7 +119,7 @@ class EditNotePage extends React.Component {
 							type="text" onKeyPress={(e) => this.handleEnter(e)} 
 							onChange={(e)=>this.handleChange(e, "title")}/>
 						<div title="Save Note" className="add-note-btn flex-center" onClick={() => this.handleUpdateNoteClick()}>
-							<p>Save</p>
+							<p>{this.state.saveButton}</p>
 							<IconSave size={32} />
 						</div>
 					</div>
@@ -130,7 +131,7 @@ class EditNotePage extends React.Component {
 						{
 							this.props.type === "plain" && (
 								<textarea 
-									value={this.state.text} 
+									value={this.state.note[0].text} 
 									type="text"  
 									onChange={(e)=>this.handleChange(e, "text")}/>
 							)}
@@ -150,10 +151,7 @@ class EditNotePage extends React.Component {
 						}
 
 					</div>
-					<div className="button-row">
-						<p className="label" ></p>
-						
-					</div>
+
 				</div>
 			</div>
 		)

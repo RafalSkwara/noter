@@ -8,7 +8,7 @@ import "../view_styles/ViewNotesPage.sass";
 import Header from '../components/Header';
 import Note from '../components/Note';
 import BigButton from '../components/BigButton';
-
+import MainMenu from '../components/MainMenu'
 import internalData from '../assets/internalData.json'
 
 
@@ -44,6 +44,7 @@ class ViewNotesPage extends React.Component {
 	render() {
 		return (
 			<div className="page-wrapper view-notes-page">
+				<MainMenu />
 				<Header homepage={false} backLink="/"/>
 				<div className="note-wrapper" >
 					{this.props.notes.length > 0 

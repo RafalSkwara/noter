@@ -8,7 +8,7 @@ import "../view_styles/NotePage.sass";
 import Header from '../components/Header';
 import Note from '../components/Note';
 import { IconClose, IconDelete, IconEdit, IconCheck, IconCheckEmpty } from '../components/Icons'
-
+import MainMenu from '../components/MainMenu'
 
 import internalData from '../assets/internalData.json'
 
@@ -47,9 +47,10 @@ class NotePage extends React.Component {
 	}
 
 	render() {
-		let id = Number(this.props.match.params.id), notes = this.props.notes;
+		let id = Number(this.props.match.params.id), notes = this.props.notes;		
 		let note = notes.filter(el => el.id == Number(id))[0];
-		console.log(note);
+	
+		console.log(`${note.category}, ${this.props.categories[0].name}`);
 		
 		const category = note ? this.props.categories.filter(el => el.name === note.category)[0] :null;
 		let styles = note ? {
@@ -59,6 +60,7 @@ class NotePage extends React.Component {
 		
 		return (
 			<div className="page-wrapper">
+				<MainMenu />
 				<Header homepage={false} backLink="/notes"/>
 				<div className="single-note-wrapper" >
 					<div className="note__operations">
@@ -82,10 +84,10 @@ class NotePage extends React.Component {
 						{note && note.title}
 					</div>
 					<div className="note__content">
-						{note 
-							? Array.isArray(note.text) 
+						{note //check if note exist
+							? Array.isArray(note.text) //check if text is array
 								? (<ul>
-									{note.text.map((bullet, i) => bullet.length > 0 
+									{note.text.map((bullet, i) => bullet //check if bullet isn't undefined or null
 										? (<li key={`bullet-${i}`}>
 											<IconCheckEmpty size={32} />
 											<p>{bullet}</p>

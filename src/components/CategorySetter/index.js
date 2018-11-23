@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter, NavLink } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { IconSearch } from '../Icons'
+import { IconSearch, IconAddBig } from '../Icons'
 import { activateCategory } from '../../actions/actions';
+import CategoryModal from '../CategoryModal'
 
 import "./styles.sass";
 
@@ -25,28 +26,31 @@ class CategorySetter extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			menuOpen: false
+			menuOpen: false,
+			categoryModal: false
 		}
 
 	}
 
 	componentDidMount() {
-		document.body.addEventListener('click', this.closeMenu.bind(this));
+		document.body.addEventListener('keypress', this.closeMenu.bind(this));
 	}
 	componentWillUnmount() {
-		document.body.removeEventListener('click', this.closeMenu);
+		document.body.removeEventListener('keypress', this.closeMenu.bind(this));
 	}
 	
 
 	closeMenu(e) {
 		let ev = e;
-		ev.target.classList.contains("category__item") 
-			? null
-			: this.setState({
+		console.log('close', ev.which);
+		if (ev.which === 0 || ev.which === 32) {
+			this.setState({
 				menuOpen: false
-			})
+			});
+		}
 	}
 	toggleMenu() {
+		console.log('toggle');
 		this.setState({
 			menuOpen: !this.state.menuOpen
 		})
@@ -55,6 +59,13 @@ class CategorySetter extends React.Component {
 	chooseCategory(id) {
 		this.props.activateCategory(id);
 		this.setState({
+			menuOpen: false
+		})
+	}
+
+	categoryModalToggle() {
+		this.setState({
+			categoryModal: !this.state.categoryModal,
 			menuOpen: false
 		})
 	}
@@ -68,7 +79,6 @@ class CategorySetter extends React.Component {
 				onClick={() => this.toggleMenu()}>
 
 					{this.props.activeCategory.name}
-			</div>
 			{this.state.menuOpen && (
 				<div className="category__list">
 					{this.props.categories.map(el => (
@@ -77,8 +87,17 @@ class CategorySetter extends React.Component {
 						onClick={() => this.chooseCategory(el.id)}>
 						{el.name}
 					</div>))}
+					<div onClick={() => this.categoryModalToggle()} className="category__item add-category" >
+						<IconAddBig size={28}/>Add Category
+					</div>
 				</div>)
 			
+			}
+			</div>
+			{this.state.categoryModal && (
+				<CategoryModal closeHandler={this.categoryModalToggle.bind(this)}/>
+			)
+
 			}
 			</React.Fragment>
 

@@ -16,5 +16,6 @@
 			"text-color": "#FFFFFF",
 			"type": "list"
 		}
-	]
+	],
+	"types": ["list", "plain"]
 }

@@ -8,15 +8,15 @@
 	display: flex
 	align-items: center
 	justify-content: center
-	z-index: 2
+	z-index: 3
 	text-transform: uppercase
 	letter-spacing: 1px
 	&:hover
 		cursor: pointer
 .category__list
-	position: relative
+	z-index: 2
+	position: absolute
 	top: 40px
-	left: -320px
 	width: 320px
 	min-width: 320px
 	background-color: red
@@ -26,11 +26,26 @@
 .category__item
 	border-top: 1px solid rgba(55,55,55,0.2)
 	background-color: rgba(255,255,255,.3)
-	padding: 10px
+	height: 40px
+	padding: 0 10px
+	display: flex
+	align-items: center
+	flex-direction: row
 	transition: all .12s ease-in-out
 	&:hover
 		background-color: #fff
 		cursor: pointer
+	&.add-category
+		background-color: rgba(255,255,255,.6)
+		display: flex
+		align-items: center
+		padding: 0 5px
+		&:hover
+			background-color: #fff
+		div
+			margin-right: 5px
+
+
 
 @media all and (max-width: 460px)
 	.category__list

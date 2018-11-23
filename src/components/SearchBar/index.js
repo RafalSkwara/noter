@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
 	}
 
 	handleChange(e) {
-		let val = e.target.value;
+		let val = e.target.value.toLowerCase();
 		let resArr = this.props.notes.filter(el => el.title.toLowerCase().includes(val));
 		console.log(resArr);
 		

@@ -1,0 +1,88 @@
+@import '../../view_styles/variables.sass'
+.category-modal-wrapper
+	@include bg-opacity(#47400b, 0.8)
+	width: 100vw
+	height: 100vh
+	position: absolute
+	left: 0
+	top: 0
+	z-index: 1000
+	display: flex
+	align-items: center
+	justify-content: center
+
+.category-modal
+	background-color: $main-color
+	width: 600px
+	height: 440px
+	max-width: 90vw
+	// max-height: 80vh
+	box-shadow: 0 0 25px 5px rgba(0,0,0,0.3)
+	border-radius: 5px
+	padding: 5px
+	&__header
+		height: 32px
+		display: flex
+		justify-content: flex-end
+	&__close
+		height: 32px
+		width: 32px
+		border-radius: 5px
+		&:hover
+			background-color: rgba(255,255,255,.6)
+			cursor: pointer
+	&__row
+		width: 95%
+		margin: 10px auto
+		padding: 15px
+		display: flex
+		align-items: center
+		background-color: rgba(255,255,255,.7)
+		&.no-color
+			background-color: transparent
+			padding: 0
+
+	&__label
+		width: 200px
+	&__picker
+		width: 100%
+		div.hue-horizontal > div
+			cursor: pointer
+	.modal-toggle
+		border: 1px solid #888
+		height: 34px
+		margin: 0 auto
+		border-radius: 4px
+		padding: 2px
+		width: 120px
+		box-shadow: 0 0 4px 2px rgba(0,0,0,0.3)
+		transition: all .12s ease-in
+		&:hover
+			cursor: pointer
+			transform: scale(1.02)
+			box-shadow: 0 0 2px 2px rgba(0,0,0,0.4)
+	.modal-wrapper
+		position: absolute
+	.category-add
+		background-color: $tertiary-color
+		width: 40%
+		height: 44px
+		display: flex
+		align-items: center
+		justify-content: center
+		color: #fff
+		border: 2px solid #FFF
+		font:
+			size: 18px
+			weight: 700
+		text-transform: uppercase
+		transition: all .12s ease-in-out
+		&:hover
+			cursor: pointer
+			background-color: #fff
+			color: $tertiary-color
+			
+
+
+@media all and (max-width: 460px)
+	.category__list

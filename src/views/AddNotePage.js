@@ -8,7 +8,7 @@ import "../view_styles/AddNotePage.sass";
 import Header from '../components/Header';
 import AddButton from '../components/AddButton';
 import ListInput from '../components/ListInput';
-
+import MainMenu from '../components/MainMenu'
 import CategorySetter from '../components/CategorySetter';
 import Note from '../components/Note';
 
@@ -70,6 +70,7 @@ class AddNotePage extends React.Component {
 	handleAddNoteClick(e) {
 		e.persist();
 		let text = this.props.type === "list" ? this.props.listInputs : this.state.text;
+		let buttonText = "";
 		let newNote = {
 			id: this.getId(),
 			title: this.state.title,
@@ -77,18 +78,25 @@ class AddNotePage extends React.Component {
 			text: text,
 			category: this.props.categoryName
 		}
-		this.props.addNote(newNote)
-		this.setState({ text: "", title: "" })
-		let stored = localStorage.hasOwnProperty("data") ? JSON.parse(localStorage.data).notes : [];
-		let newStored = [...stored, newNote];
-		localStorage.setItem("data", JSON.stringify({ "notes": newStored }))
-		//after adding the note clear the data in all of inputs
-		if(this.props.type === "list") {
-			this.props.clearList();
+		if(newNote.text.length > 0 && newNote.title) {
+			this.props.addNote(newNote)
+			this.setState({ text: "", title: "" })
+			let d = JSON.parse(localStorage.data)
+			let stored = localStorage.hasOwnProperty("data") ? d.notes : [];
+			let newStored = [...stored, newNote];
+			d.notes = newStored;
+			localStorage.setItem("data", JSON.stringify(d))
+			//after adding the note clear the data in all of inputs
+			if(this.props.type === "list") {
+				this.props.clearList();
+			}
+			buttonText = "Note Added!"
+		} else {
+			buttonText = "Please make sure the note isn't empty."
 		}
 		//button visual behavior
 		const inner = e.target.innerHTML;
-		e.target.innerHTML = "<p>Note Added!</p>"
+		e.target.innerHTML = `<p>${buttonText}</p>`;
 		setTimeout(() => {
 			e.target.innerHTML = inner;
 		}, 2000);
@@ -96,13 +104,14 @@ class AddNotePage extends React.Component {
 
 	handleEnter(e) {
 		if(e.which === 13 ) {
-			this.handleAddNoteClick();
+			this.handleAddNoteClick(e);
 		}
 	}
 
 	render() {
 		return (
 			<div className="page-wrapper">
+				<MainMenu />
 				<Header homepage={false} backLink="/"/>
 				<div className="note-wrapper" >
 					<div className="top-row">

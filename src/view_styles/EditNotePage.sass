@@ -5,10 +5,6 @@
 	max-width: 1200px
 	margin: 0 auto
 	padding: 10px
-	display: flex
-	flex-direction: column
-	align-items: center
-	justify-content: flex-start
 	padding-top: 10px
 	.top-row,
 	.bottom-row,
@@ -54,7 +50,7 @@
 	.button-row
 		margin-top: 10px
 	.add-note-btn
-		position: absolute
+		position: fixed
 		bottom: 0
 		left: 0
 		width: auto
@@ -84,10 +80,11 @@
 				
 	.bottom-row
 		min-height: 50vh
+		padding-bottom: 60px
 		textarea
 			text-indent: 0
 			padding: 10px
-			width: 100%
+			min-width: calc(100% - 120px)
 			height: calc(100vh - 300px)
 			min-height: 160px
 			max-height: calc(100vh - 300px)
